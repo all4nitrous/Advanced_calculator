@@ -1,4 +1,5 @@
-from calculator import add, subtract, multiply, divide
+from calculator.operations import Calculator
+
 '''Initial Calculator Test'''
 from calculator import Calculator
 
