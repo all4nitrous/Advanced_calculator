@@ -1,6 +1,5 @@
 from calculator.calculation import Calculation
-from typing import Callable, List
-from decimal import Decimal
+from typing import List
 
 '''************* Calculations Section & stored History **************'''
 
@@ -9,7 +8,7 @@ class Calculations:
     history: List[Calculation] = []
    
    
-    '''****************** Add results to history ***************S'''
+    '''****************** Add results to history ************'''
     
     
     @classmethod
@@ -19,14 +18,15 @@ class Calculations:
         
     '''*************** Get History of results **************'''
     
+    
     @classmethod
     def get_history(cls) -> List[Calculation]:
         return cls.history
     
     
-    '''********************** Clear History *******************'''
+    '''**************** Clear History *****************'''
     
-    
+    @classmethod 
     def clear_history(cls):
         cls.history.clear()
         
@@ -34,7 +34,16 @@ class Calculations:
     '''**************** Retrieve Latest history **************** '''
     
     
+    @classmethod
     def get_latest(cls) -> Calculation:
         if cls.history:                #If no History, returns None
             return cls.history[-1]
         return None
+    
+    
+    '''*********** Return List of Calculations by name **************'''
+    
+    
+    @classmethod
+    def find_by_operation(cls, operation_name: str) -> List[Calculation]:
+        return [calc for calc in cls.history if calc.operation.__name__ == operation_name]
