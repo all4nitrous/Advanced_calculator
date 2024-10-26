@@ -1,15 +1,11 @@
-# conftest.py
-import pytest
 from decimal import Decimal
-from faker import Faker
 from calculator.operations import add, subtract, multiply, divide
-from functools import metafunc
+from faker import Faker
 
 fake = Faker()
 
-'''*************************************************** Operation Mapping ****************************************'''
 
-def generate_test_data(num_records):
+def generate_test_data(num_records): #operation mapping
     
     operation_mappings = {
         'add': add,
@@ -44,9 +40,12 @@ def pytest_addoption(parser):
 '''************************************************* Test Fixtures *******************************************************'''
 
 def pytest_generate_tests(metafunc):
-    
-    if {"a", "b", "expected"}.intersection(set(metafunc.fixturenames)):
+     if {"a", "b", "expected"}.intersection(set(metafunc.fixturenames)):
         num_records = metafunc.config.getoption("num_records")
+        
         parameters = list(generate_test_data(num_records))
+        
         modified_parameters = [(a, b, op_name if 'operation_name' in metafunc.fixturenames else op_func, expected) for a, b, op_name, op_func, expected in parameters]
+        
         metafunc.parametrize("a,b,operation,expected", modified_parameters)
+

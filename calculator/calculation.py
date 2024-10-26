@@ -12,22 +12,22 @@ class Calculation:
         self.operation  = operation #Allows function that matches signatures
         
 
-"""************* Alternative constructor *****************"""
 
 
-@staticmethod
-def create(a: Decimal, b: Decimal, operation: Callable[[Decimal, Decimal], Decimal]):
-    return Calculation(a ,b, operation) #Return Calculation based on Argument provided
 
 
-'''************* Perform Stored Calculation *************'''
+    def create(a: Decimal, b: Decimal, operation: Callable[[Decimal, Decimal], Decimal]):
+        return Calculation(a , b, operation) #Return Calculation based on Argument provided
 
 
-def perform(self) -> Decimal:
-    return self.operation(self.a, self.b)
 
 
-'''****************** Return Simplified String *******************'''
 
-def __repr__(self):
-    return f"Calculation({self.a}, {self.b}, {self.operation.__name__})"
+    def perform(self) -> Decimal:
+        return self.operation(self.a, self.b)
+
+
+
+
+    def __repr__(self):
+        return f"Calculation({self.a}, {self.b}, {self.operation.__name__})"

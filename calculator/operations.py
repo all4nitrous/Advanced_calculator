@@ -1,27 +1,16 @@
-from calculator import add, subtract, multiply, divide
-from calculator.calculation import Calculation
+from decimal import Decimal
 
-class Calculator:
+def add(a: Decimal, b: Decimal) -> Decimal:
+    return a + b
 
-    @staticmethod
-    def add(a,b):
-        calculation = Calculation(a, b, add)
-        return calculation.get.result()
+def subtract(a: Decimal, b: Decimal) -> Decimal:
+    return a - b
 
-
-    @staticmethod
-    def subtract(a,b):
-        calculation = Calculation(a, b, subtract)
-        return calculation.get.result()
-
-
-    @staticmethod
-    def multiply(a,b):
-        calculation = Calculation(a, b, multiply)
-        return calculation.get.result()
+def multiply(a: Decimal, b: Decimal) -> Decimal:
+    return a * b
       
 
-    @staticmethod
-    def divide(a,b):
-        calculation = Calculation(a, b, divide)
-        return calculation.get.result()
+def divide(a: Decimal, b: Decimal) -> Decimal:
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
